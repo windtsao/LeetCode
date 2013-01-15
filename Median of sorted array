@@ -1,33 +1,34 @@
 public class Solution {
-    public double findMedianSortedArrays(int A[], int B[]) {
-        // Start typing your Java solution below
-        // DO NOT write main() function
-        int i=0,j=0,k=0;
-        int judge=0;
-        
-        int[] C=new int[A.length+B.length];
-        if((A.length+B.length)%2==0)judge=(A.length+B.length)/2;
-        else judge =((A.length+B.length)-1)/2;
-        while(k<=judge){
-            if(A[i]<B[j]){
-                C[k++]=A[i];
-                i++;
-            }
-            else{
-                C[k++]=B[j];
-                j++;
-            }
-        }
-        while(i<A.length){
-            C[k++]=A[i++];
-        }
-        while(j<B.length){
-            C[k++]=B[j++];
-        }
-        double d1=(C[judge]+C[judge-1])/2;
-        double d2=C[judge];
-        if(k%2==0)return d1;
-        else return d2;
-        
-    }
+   public static double findMedianSortedArrays(int A[], int B[]) {
+            // Start typing your Java solution below
+	        // DO NOT write main() function
+	        int i=0,j=0,k=0;
+	        int judge=0;
+	        
+	        int[] C=new int[A.length+B.length];
+	        if((A.length+B.length)%2==0)judge=(A.length+B.length)/2;
+	        else judge =((A.length+B.length)-1)/2;
+	        while(k<=judge){
+	            if(A[i]<B[j]){
+	                C[k++]=A[i];
+	                i++;
+	            }
+	            else{
+	                C[k++]=B[j];
+	                j++;
+	            }
+	        }
+	        /*while(i<A.length){
+	            C[k++]=A[i++];
+	        }
+	        while(j<B.length){
+	            C[k++]=B[j++];
+	        }*/
+	        double d1=(C[judge]+C[judge-1])/2;
+	        double d2=C[judge];
+	        if(k%2==0)return d1;
+	        else return d2;
+	        
+	    }
+
 }
