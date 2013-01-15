@@ -1,0 +1,25 @@
+public class Solution {
+    public int[] twoSum(int[] numbers, int target) {
+        boolean flag=false;
+        int i,j=0;
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        //ArrayList <Integer> list = new ArrayList<Integer>();
+        /*for(int i=0;i<numbers.length;i++){
+            list.add(numbers[i]);
+        }
+        Collections.sort(list);*/
+        for(i=0;i<numbers.length;i++){
+            j=i+1;
+            while(j<numbers.length){
+                if(numbers[i]+numbers[j]==target){
+                flag=true;
+                break;}
+                else j++;
+            }
+            if(flag)break;
+        }
+        int[] b=new int[]{i+1,j+1};
+        return b;
+    }
+}
