@@ -1,0 +1,18 @@
+public class Solution {
+    public String convert(String s, int nRows) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        String[] s2=new String[nRows];
+        if(nRows==1||nRows>s.length())return s;
+        else{int i=0;int r=nRows*2-2;
+        for(i=0;i<s.length();i++){
+            if(i%r<nRows){if(s2[i%r]==null)s2[i%r]=""+s.charAt(i);
+            else s2[i%r]=s2[i%r]+s.charAt(i);}
+            else {
+                    if(s2[nRows-((i%r)-nRows+1)-1]==null)s2[nRows-((i%r)-nRows+1)-1]=""+s.charAt(i);
+                    else s2[nRows-((i%r)-nRows+1)-1]=s2[nRows-((i%r)-nRows+1)-1]+s.charAt(i);}
+        }
+        for(i=1;i<nRows;i++)s2[0]=s2[0]+s2[i];
+        return s2[0];}
+    }
+}
