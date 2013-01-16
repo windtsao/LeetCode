@@ -7,17 +7,19 @@ public class Solution {
         while(i+max<s.length()){
             HashSet<Character> hash= new HashSet();
             j=i+1;
+            hash.add(s.charAt(i));
             while(true){
-            i++;
-            
+            if(j>=s.length()){max=1;return max;}
             if(!hash.contains(s.charAt(j))){
                 hash.add(s.charAt(j));
                 j++;
             }
-            if(j-i+1>max)max=j-i+1;
+           
+            else {j--;break;}
+            if(j==s.length()){j--;break;}
             }
-            else break;
-            
+            if(j-i+1>max)max=j-i+1;
+            i++;
         }
         return max;
         
