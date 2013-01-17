@@ -2,15 +2,37 @@ public class Solution {
     public int maxArea(int[] height) {
         // Start typing your Java solution below
         // DO NOT write main() function
-        int max=0;
+        int max=0;int index=0;
+        //find the biggest
         for(int i=0;i<height.length;i++){
-            for(int j=i+1;j<height.length;j++){
-                if(height[i]>height[j]){
-                    if(height[j]*(j-i)>max)max=height[j]*(j-i);
-                }
-                else if(height[i]*(j-i)>max)max=height[i]*(j-i);
+            if(height[i]>max){max=height[i];index=i;}
+        }//find the biggest
+        //delete the smaller value between 0-max and max-n
+        int lefts=height[0];
+        int rights=height[height.length-1];
+        for(int i=1;i<index;i++){
+            if(height[i]<=lefts)height[i]=0;
+            else lefts=height[i];
+        }
+        for(int i=height.length-2;i>index;i--){
+            if(height[i]<=rights)height[i]=0;
+            else rights=height[i];
+        }
+         //delete the smaller value between 0-max and max-n
+        //now the height is like a prymaid which max can be calculated in linear time
+        max=0;
+        int i=0,j=height.length-1;
+        while(i<j){
+            if(height[i]>height[j]){
+                if(max<height[j]*(j-i))max=height[j]*(j-i);
+                j--;
             }
+            else {
+                if(max<height[i]*(j-i))max=height[i]*(j-i);
+                i++;
+            }
+            
         }
         return max;
-    }
+        }
 }
