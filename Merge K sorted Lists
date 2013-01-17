@@ -1,0 +1,74 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode mergeKLists(ArrayList<ListNode> lists) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        if(lists.size()==2)return merge(lists.get(0),lists.get(1));
+        ArrayList<ListNode> llist=new ArrayList<ListNode>();
+        ArrayList<ListNode> rlist=new ArrayList<ListNode>();
+        for(int i=0;i<lists.size()/2;i++){
+            llist.add(lists.get(i));
+        }
+        for(int i=lists.size()/2;i<lists.size();i++){
+            rlist.add(lists.get(i));
+        }
+        return mergeKLists(llist);
+        return mergeKLists(rlist);
+
+    }
+    public ListNode merge(ListNode list1, ListNode list2){
+        ListNode head=null;
+        ListNode previous=null;
+        while(list1!=null&&list2!=null){
+                
+            if(list1.val>list2.val){
+                 ListNode l=new ListNode(list2.val);
+                 if(previous!=null){
+                     previous.next=l;
+                     previous=l;
+                 }
+                 else {previous=l;head=l;}
+                 list2=list2.next;
+            }
+            else{
+                 ListNode l=new ListNode(list1.val);
+                 if(previous!=null){
+                     previous.next=l;
+                     previous=l;
+                 }
+                 else {previous=l;head=l;}
+                 list1=list1.next;
+            }
+        }
+        while(list1!=null){
+            ListNode l=new ListNode(list1.val);
+            if(previous==null){previous=l;head=l;}
+            else{
+                previous.next=l;
+                previous=l;
+                list1=list1.next;
+            }
+        }
+         while(list2!=null){
+            ListNode l=new ListNode(list2.val);
+            if(previous==null){previous=l;head=l;}
+            else{
+                previous.next=l;
+                previous=l;
+                list2=list2.next;
+            }
+        }
+        return head;
+    }
+    
+}
