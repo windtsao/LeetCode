@@ -1,0 +1,26 @@
+public class Solution {
+    public boolean isPalindrome(int x) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        if(x>=0){
+            Integer i = new Integer(x);
+            boolean flag=false;
+            String s=i.toString();
+            if(s.length()==0)return true;
+            if(s.length()==1)return true;
+            if(s.length()%2==0)
+            for(int j=0;j<s.length()/2;j++){
+                if(s.charAt(j)==s.charAt(s.length()-1-j));
+                else break;
+                if(j==s.length()/2-1)flag=true; 
+            }
+            else for(int j=0;j<(s.length()-1)/2;j++){
+                if(s.charAt(j)==s.charAt(s.length()-1-j));
+                else break;
+                if(j==(s.length()-1)/2-1)flag=true; 
+            }
+            return flag;
+        }
+        else return false;
+    }
+}
