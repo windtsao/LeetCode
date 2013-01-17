@@ -1,0 +1,26 @@
+public class Solution {
+    
+    public ArrayList<String> generateParenthesis(int n) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        ArrayList<String> array= new ArrayList<String>();
+        /*for(int i=0;i<=array.size();i++){
+            array.remove(i);
+        }*/
+        String s="";
+       
+        fun(s,0,0,n,array);
+        
+        return array;
+    
+    }
+     public void fun(String s,int l,int r,int n,ArrayList<String> array){
+            if(l==n&&r==n){
+                array.add(s);
+            }
+            else {
+                if(l<n)fun(s+"(",l+1,r,n,array);
+                if(l>r)fun(s+")",l,r+1,n,array);
+            }
+        }
+}
