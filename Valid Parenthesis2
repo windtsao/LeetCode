@@ -1,0 +1,24 @@
+public class Solution {
+    public boolean isValid(String s) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        int[] left=new int[3];
+        int[] right=new int[3];
+        char previous=' ';
+        left[0]=0;left[1]=0;left[2]=0;
+        right[0]=0; right[1]=0; right[2]=0;
+        for(int i=0;i<s.length();i++){
+            switch(s.charAt(i)){
+                case '{':left[0]++;previous='{';break;
+                case '(':left[1]++;previous='(';break;
+                case '[':left[2]++;previous='[';break;
+                case '}':if(previous=='('||previous=='[')return false;else {previous='}';right[0]++;break;}
+                case ']':if(previous=='('||previous=='{')return false;else {previous=']';right[2]++;break;}
+                case ')':if(previous=='{'||previous=='[')return false;else {previous=')';right[1]++;break;}
+            }
+        }
+        if(left[0]==right[0]&&left[1]==right[1]&&left[2]==right[2])return true;
+        else return false;
+        
+    }
+}
