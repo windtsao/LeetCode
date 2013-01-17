@@ -1,0 +1,16 @@
+public class Solution {
+    public int maxArea(int[] height) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        int max=0;
+        for(int i=0;i<height.length;i++){
+            for(int j=i+1;j<height.length;j++){
+                if(height[i]>height[j]){
+                    if(height[j]*(j-i)>max)max=height[j]*(j-i);
+                }
+                else if(height[i]*(j-i)>max)max=height[i]*(j-i);
+            }
+        }
+        return max;
+    }
+}
