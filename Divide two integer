@@ -1,0 +1,48 @@
+public class Solution {
+    public int divide(int dividend, int divisor) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        if(dividend==0)return 0;
+        if(divisor==0)return 0;
+        int count=0,count2=0;
+        boolean flag1=false,flag2=false;
+        if(dividend<0){flag1=true;dividend=-dividend;}
+        if(divisor<0){flag2=true;divisor=-divisor;}
+        while(dividend>0){
+            dividend>>1;
+            
+        }
+        
+        if(dividend>0&&divisor>0){
+            while(dividend-divisor>=0){
+                dividend=dividend-divisor;
+                count++;
+            }
+            return count;
+        }
+        else if(dividend>0&&divisor<0){
+            while(dividend+divisor>=0){
+                dividend=dividend+divisor;
+                count++;
+            }
+            return -count;
+        }
+        else if(dividend<0&&divisor>0){
+            dividend=-dividend;
+            while(dividend+divisor>=0){
+                dividend=dividend-divisor;
+                count++;
+            }
+            return -count;
+        }
+        else if(dividend<0&&divisor<0){
+            dividend=-dividend;
+            while(dividend+divisor>=0){
+                dividend=dividend+divisor;
+                count++;
+            }
+            return count;
+        }
+        return count;
+    }
+}
