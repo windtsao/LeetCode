@@ -1,0 +1,58 @@
+public class Solution {
+    public void nextPermutation(int[] num) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        int i;
+        if(num.length<2)return;
+        //iterate every element from the end of the array
+        for(i=num.length-2;i>=0;i--){
+            //if the sub array(from i to the end) is in a descending order, 
+            //then continue, until find the first element that is smaller.
+            if(isSorted(i,num))continue;
+            else {
+                int j=0;
+                int k=num.length-1;
+                //else find the first larger number than num[i] in the subarray, and swap with num[i].
+                for(k=num.length-1;;k--){
+                        if(num[k]<=num[i])continue;
+                        else{
+                            int temp=num[k];
+                            num[k]=num[i];
+                            num[i]=temp;
+                            break;
+                        }
+                }
+                //after swap, the substring is still in a desecding order
+                //change it to ascending order to make it the next permutation.
+                int l=i+1;int u=num.length-1;
+                while(l<u){
+                    int tmp=num[l];
+                    num[l]=num[u];
+                    num[u]=tmp;
+                    l++;u--;
+                }
+                return;
+            }
+        // if the array all is in ascending order then change it to descending order.
+        }if(i<0){
+            int l=0;int u=num.length-1;
+            while(l<=u){
+                int tmp=num[l];
+                    num[l]=num[u];
+                    num[u]=tmp;
+                    l++;u--;
+                
+            }
+            return;
+        }
+    }
+    public boolean isSorted(int index,int[] num){
+        for(int i=index;i<num.length-1;i++){
+            for(int j=i+1;j<num.length;j++){
+                if(num[i]<num[j])return false;
+            }
+           
+        }
+         return true;
+    }
+}
