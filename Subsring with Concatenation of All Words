@@ -1,0 +1,64 @@
+public ArrayList<Integer> findSubstring(String S, String[] L) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        ArrayList <Integer> a = new ArrayList<Integer>();
+        
+        HashMap <String, Integer> h2 = new HashMap<String, Integer>();
+        int len = L[0].length();
+        int num = L.length;
+        /*for(int j=0;j<num;j++){
+            if(h1.containsKey(L[j])){
+                int temp = h1.get(L[j]);
+                h1.put(L[j],temp+1);
+            }
+            else h1.put(L[j],1);
+        }*/
+        for(int i=0;i<S.length()-len*num+1;i++){
+            int k = i;
+            HashMap <String, Integer> h1 = new HashMap<String, Integer>();
+            for(int j=0;j<num;j++){
+                if(h1.containsKey(L[j])){
+                    int temp = h1.get(L[j]);
+                    h1.put(L[j],temp+1);
+                    
+                }
+                else h1.put(L[j],1);
+                System.out.println(L[j]+"value:"+h1.get(L[j]));
+            }
+            for(int j=0;j<num;j++){
+                String s = S.substring(k+j*len,k+(j+1)*len);
+                
+                System.out.println("String:"+s);
+                if(!h1.containsKey(s))break;
+                else {
+                    if(h1.get(s)==1)h1.remove(s);
+                    else {
+                        int temp=h1.get(s);
+                        h1.put(s,temp-1);
+                    }
+                }
+                /*else {
+                    if(h2.containsKey(L[i])){
+                        int temp = h2.get(L[i]);
+                        h2.put(L[i],temp+1);
+                    }
+                    else h2.put(L[i],1);
+                    }
+            }
+            if(h1==h2)a.add(i);*/
+            }
+            if(h1.isEmpty())a.add(i);
+            
+        }
+        return a;
+    }
+  static public void main(String[] arg){
+		FindSubstring fb = new FindSubstring();
+		String s = "barfoothefoobarman";
+		String[] l = {"bar","foo"};
+		ArrayList <Integer> a = new ArrayList<Integer>();
+		a=fb.findSubstring(s,l);
+		for(int i=0;i<a.size();i++){
+			System.out.print(a.get(i)+",");
+		}
+	}
