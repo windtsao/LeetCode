@@ -15,19 +15,19 @@ public class Solution {
             }
             else upper=mid;
         }
-        if(lower>0&&A[lower-1]==target) lbound=lower-1;
+        if(lower>0&&A[lower-1]==target) ubound=lower-1;
         else return notfound;
         
         lower=-1;
         upper=A.length-1;
         while(lower<upper){
-            mid = lower + (upper-lower)/2;
+            mid = lower + (upper-lower)/2+1;
             if(A[mid]>=target){
                 upper=mid-1;
             }
             else lower=mid;
         }
-        if(upper<A.length-1&&A[upper+1]==target) ubound=upper+1;
+        if(upper<A.length-1&&A[upper+1]==target) lbound=upper+1;
         int[] result = new int[]{lbound,ubound};
         return result;
     }
