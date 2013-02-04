@@ -13,21 +13,23 @@ public class Solution {
             tmp.add(target);
             a.add(tmp);
         }
-         ArrayList<Integer>tmp=new ArrayList<Integer>();
+         ArrayList<Integer> tmp=new ArrayList<Integer>();
         f(candidates,tmp,bound,target,a);
         if(a!=null)return a;
         else return null;
     }
     public void f(int[] a,ArrayList<Integer> al,int bound,int target,ArrayList<ArrayList<Integer>> l){
         int[] next= new int[bound+1];
-       
         int i=0;
         next[i]=0;
         while(i<bound+1){
             next[i]=target-a[i];
             if(next[i]<0)return;
             al.add(a[i]);
-            if(next[i]==0)l.add(al);
+            if(next[i]==0){
+                l.add(al);
+                al=new ArrayList<Integer>();
+            }
             else f(a,al,bound,next[i],l);
             
             i++;
