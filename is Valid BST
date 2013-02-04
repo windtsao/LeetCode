@@ -1,0 +1,32 @@
+/**
+ * Definition for binary tree
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+
+    public boolean isValidBST(TreeNode root) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        if(root==null)return true;
+        ArrayList<Integer> a = new ArrayList<Integer>();
+        isBST(root,a);
+        for(int i=0;i<a.size()-1;i++){
+            if(a.get(i)>=a.get(i+1))return false;
+        }
+        return true;
+   
+        }
+        public void isBST(TreeNode root,ArrayList<Integer> a){
+        if(root.left!=null)isBST(root.left,a);
+        a.add(root.val);
+        if(root.right!=null)isBST(root.right,a);
+    }
+    }
+    
+
+   
