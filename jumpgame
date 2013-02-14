@@ -1,0 +1,33 @@
+public class Solution {
+    int[] steps;
+    public int jump(int[] A) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        if(A==null)return 0;
+        steps = new int[A.length];
+        for(int i=0;i<steps.length;i++){
+            steps[i]=0;
+        }
+        if(A.length==1)return 0;
+        return jumps(A,0);
+    }
+    public int jumps(int[] A,int index){
+        int count = 0;
+        int min=A.length;
+        if(A[index]>=A.length-index-1){
+            steps[index]=1;
+            return 1;
+        }
+        for(int i=A[index];i>0;i--){
+            if(steps[index+i]!=0)count=steps[index+i]+1;
+            else{
+                count = jumps(A,index+i)+1;
+                
+            }
+            if(count<min)min=count;
+        }
+        steps[index]=min;
+        return min;
+    }
+    
+}
