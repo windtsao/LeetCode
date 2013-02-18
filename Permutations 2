@@ -1,0 +1,38 @@
+public class Solution {
+    public ArrayList<ArrayList<Integer>> permuteUnique(int[] num) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        if(num.length==1){
+            ArrayList<ArrayList<Integer>> al = new ArrayList<ArrayList<Integer>>();
+            ArrayList<Integer> altemp=new ArrayList<Integer>();
+            altemp.add(num[0]);
+            al.add(altemp);
+            return al;
+        }
+        return permutefun(num,0);
+    }
+    public ArrayList<ArrayList<Integer>> permutefun(int[] num,int index){
+        ArrayList<ArrayList<Integer>> al = new ArrayList<ArrayList<Integer>>();
+        if(index==num.length-1){
+            ArrayList<Integer> altemp=new ArrayList<Integer>();
+            altemp.add(num[index]);
+            al.add(altemp);
+            return al;
+        }
+        al=permutefun(num,index+1);
+        ArrayList<ArrayList<Integer>> newal = new ArrayList<ArrayList<Integer>>();
+        HashSet <ArrayList<Integer>> set=new HashSet <ArrayList<Integer>>();
+        for(int k=0;k<al.size();k++){
+            for(int j=0;j<=al.get(k).size();j++){
+                ArrayList<Integer> altemp=new ArrayList<Integer>();
+                altemp.addAll(al.get(k));
+                altemp.add(j,num[index]);
+                if(!set.contains(altemp)){
+                    set.add(altemp);
+                    newal.add(altemp);
+                }
+            }
+        }
+        return newal;
+    }
+}
