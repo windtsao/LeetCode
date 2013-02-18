@@ -1,0 +1,44 @@
+public class Solution {
+    public ArrayList<String> anagrams(String[] strs) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        HashMap<String,Integer> map = new HashMap<String,Integer>();
+        ArrayList<String> al = new ArrayList<String>();
+        ArrayList<Integer> record =new ArrayList<Integer>();
+        for(int i=0;i<strs.length;i++){
+            int flag2=0;
+            int flag3=0;
+            for(int m=0;m<record.size();m++){
+                    if(i==record.get(m))flag2=1;
+            }
+            if(flag2==1)continue;
+            for(int j=i+1;j<strs.length;j++){
+                int flag=0;
+                for(int m=0;m<record.size();m++){
+                    if(j==record.get(m))flag=1;
+                }
+                if(flag==1)continue;
+                else if(hash(strs[i]).equals(hash(strs[j]))){
+                    flag3=1;
+                    al.add(strs[j]);
+                    record.add(j);
+                    record.add(i);
+                }
+            }
+            if(flag3==1)al.add(strs[i]);
+        }
+        return al;
+    }
+    public HashMap<Character,Integer> hash(String s){
+        HashMap<Character,Integer> map = new HashMap<Character,Integer>();
+        for(int i=0;i<s.length();i++){
+            if(map.containsKey(s.charAt(i))){
+                map.put(s.charAt(i),map.get(s.charAt(i))+1);
+            }
+            else{
+                map.put(s.charAt(i),1);
+            }
+        }
+        return map;
+    }
+}
