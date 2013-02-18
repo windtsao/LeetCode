@@ -1,0 +1,22 @@
+public class Solution {
+    public void rotate(int[][] matrix) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        for(int i=1;i<matrix[0].length;i++){
+            for(int j=0;j<i;j++){
+                swap(matrix,i,j,j,i);
+            }
+        }
+        for(int i=0;i<matrix[0].length;i++){
+            for(int j=0;j<matrix.length/2;j++){
+                swap(matrix,i,j,i,matrix.length-1-j);
+            }
+        }
+        
+    }
+    public void swap(int[][] m,int i,int j,int x,int y){
+        int temp=m[i][j];
+        m[i][j]=m[x][y];
+        m[x][y]=temp;
+    }
+}
