@@ -1,0 +1,53 @@
+public class Solution {
+    public ArrayList<String[]> solveNQueens(int n) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        boolean[][] queen = new boolean[n][n];
+        ArrayList<String[]> al = new ArrayList<String[]>();
+        String[] str = new String[n];
+        return solveQueen(n,0,queen,str);   
+    }
+    public ArrayList<String[]> solveQueen(int n,int count,boolean[][] queen,String[] str){
+         ArrayList<String[]> al = new ArrayList<String[]>();
+        
+        for(int i=0;i<n;i++){
+            if(count==n){
+                al.add(str);
+                return al;
+            }
+            if(isValid(queen,i,count)){
+                setQueen(queen,i,count,n);
+                str[count]=setStr(i,n);
+                al=solveQueen(n,count+1,queen,str);
+            }
+            
+        }
+        return al;
+    }
+    public boolean isValid(boolean[][] queen,int i,int count){
+        if(queen[i][count]==true)return false;
+        else return true;
+    }
+    public void setQueen(boolean[][] queen,int i,int count,int n){
+        for(int k=0;k<n;k++){
+            queen[i][k]=true;
+            queen[k][count]=true;
+            
+        }
+        
+        for(int k=0;k<n;k++){
+            for(int m=0;m<n;m++){
+                if((k-m==count-i)||((k+m)==count+i))queen[k][m]=true;
+            }
+        }
+        
+    }
+    public String setStr(int i,int n){
+        StringBuffer sb= new StringBuffer();
+        for(int k=0;k<n;k++){
+            if(k==i)sb.append("Q");
+            else sb.append(".");
+        }
+        return sb.toString();
+    }
+}
